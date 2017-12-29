@@ -1,0 +1,12 @@
+<router-outlet>
+
+    <section *ngIf="showLoader" page-loader>
+         <mat-progress-bar
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="'indeterminate'">
+      </mat-progress-bar>
+    </section>
+
+</router-outlet>

@@ -1,0 +1,35 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<mat-card>
+    <mat-card-header text-center>
+        <mat-card-title color="primary"><b>Login</b></mat-card-title>
+
+    </mat-card-header>
+
+
+    <mat-card-content>
+        <form form-full-width [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+            <mat-input-container>
+
+                <input matInput type="text" placeholder="Email" formControlName="email" [(ngModel)]="user.email">
+               <mat-error *ngIf="loginForm.controls.email.errors">This field <strong>required</strong></mat-error>
+            </mat-input-container>
+
+            <mat-input-container>
+
+                <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="user.password">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    <mat-error *ngIf="loginForm.controls.password.errors">This field <strong>required</strong></mat-error>
+                
+            </mat-input-container>
+            <br/>
+            <br/>
+            <button mat-raised-button color="primary" form-full-width >Login</button>
+        </form>
+    </mat-card-content>
+
+</mat-card>

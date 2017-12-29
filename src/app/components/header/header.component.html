@@ -1,0 +1,19 @@
+<div fxLayout='row' fxLayout.xs="column">
+
+    <div fxFlex="50%" fxFlex.xs="100%" fxFlexAlign="center" fxLayoutAlign="start" fxLayoutAlign.xs="center">
+      <a href="/main"><img src="assets/images/ct-logo_full.png" height="80" /></a>
+    </div>
+
+    <div fxFlex="50%" fxFlex.xs="100%" fxFlexAlign="center" fxLayoutAlign="end" fxLayoutAlign.xs="center">
+        <div fxLayoutAlign="right stretch" margin-right-15>
+            <button mat-button [matMenuTriggerFor]="menu"> <strong>Project Manger</strong> <mat-icon class="material-icons">arrow_drop_down</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout();">Logout</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <mat-icon class="material-icons" size-35>account_circle</mat-icon>
+        </div>
+    </div>
+  
+ </div>
+

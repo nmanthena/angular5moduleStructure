@@ -1,0 +1,68 @@
+<div>
+    <div size-28 margin-bottom-15>Schedule Interview</div>
+<form [formGroup]="scheduleForm" (ngSubmit)="scheduleInterview()" novalidate>
+        <div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <mat-select placeholder="Interview type" formControlName="interviewType" [(ngModel)]="scheduleForm.interviewType">
+                    <mat-option value="option">Telephonic Interview</mat-option>
+                    <mat-option value="option">Face to Face Interview</mat-option>
+                    <mat-option value="option">Skype Interview</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <input matInput placeholder="Job">
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <mat-select placeholder="Duration" [(ngModel)]="scheduleForm.duration" formControlName="durationTime">
+                    <mat-option *ngFor="let durationTime of durationTimeArray" [value]="durationTime" value="option">{{durationTime}} min</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <mat-select placeholder="Rounds" formControlName="rounds" [(ngModel)]="scheduleForm.rounds">
+                    <mat-option value="option">1</mat-option>
+                    <mat-option value="option">2</mat-option>
+                    <mat-option value="option">3</mat-option>
+                    <mat-option value="option">4</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--<mat-form-field class="example-full-width">
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateOfSchedule" [(ngModel)]="scheduleForm.dateOfSchedule">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>-->
+            <div><owl-date-time matInput [(ngModel)]="moment" formControlName="dateOfSchedule"></owl-date-time></div>
+        </div>
+<div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <input matInput placeholder="Interviewer Id" type="text" formControlName="id" [(ngModel)]="schedule.interviewerId">
+                <mat-error *ngIf="scheduleForm.controls.email.errors">This field <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <input matInput placeholder="Interviewer Email" type="text" formControlName="email" [(ngModel)]="scheduleForm.interviewerEmail">
+                <mat-error *ngIf="scheduleForm.controls.email.errors">This field <strong>required</strong></mat-error>
+            </mat-form-field>
+        </div>
+<div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <input matInput placeholder="Candidate Name" readonly>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <input matInput placeholder="Candidate Phone" readonly>
+            </mat-form-field>
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <input matInput placeholder="Candidate Email" readonly>
+            </mat-form-field>
+
+</div>
+<div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
+            <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+                <textarea matInput placeholder="Leave a comment" formControlName="comment" [(ngModel)]="scheduleForm.comment"></textarea>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxFlexAlign="end" fxLayoutAlign="end" fxLayoutWrap fxLayoutGap="20px" margin-top-30 fxFlexFill>
+            <button mat-raised-button color="accent" btnstyle fxFlexAlign="end" mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary" btnstyle fxFlexAlign="end">Submit</button>
+        </div>
+    </form>
+</div>

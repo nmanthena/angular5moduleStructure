@@ -1,0 +1,114 @@
+<mat-card-content>
+    <div fxLayout="row" bottomGreenborder padding-top-bottom-15>
+        <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" size-24 > Candidate Information </div>
+        <div fxLayout.xs="column" fxFlex="50%" fxLayoutAlign="end" >CID: CT001</div>
+    </div>
+    <form class="example-form" name="can">
+      <div size="20"><b>Profile Information</b></div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                Naresh Manthena
+            </div>
+            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                Experiance: 8 Years
+            </div>
+        </div>
+        <div size="20" margin-top-bottom-10><b>Primary Skills</b></div>
+        <mat-chip-list>
+            <div *ngFor="let skill of skillsSets; let i = index">
+                <mat-chip color="accent" selected="true"> {{skill}}</mat-chip>
+             </div>
+        </mat-chip-list>
+        <div size="20" margin-top-bottom-10><b>Salary Details</b></div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Fixed" disabled value="10 L" [(ngModel)]="fx" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Variable" [(ngModel)]="vb" disabled value="5%" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Bonus" [(ngModel)]="bonus" disabled value="Nothing" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Options" [(ngModel)]="opt" disabled value="Nothing" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Any Other" [(ngModel)]="anyOther" disabled [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Expected Salary" [(ngModel)]="expt" disabled value="16 L" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%">
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Notice Period" [(ngModel)]="noticep" disabled value="60 Days" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" size-12>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" >          
+                Expcted Salay is Negotiable check if &nbsp;  <mat-checkbox name="negotiable" disabled [checked]="true">Yes</mat-checkbox> 
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" >
+                Expcted Salay is Negotiable check if &nbsp; <mat-checkbox name="negotiable-notice" [checked]="true">Yes</mat-checkbox>                
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" > 
+                <mat-form-field form-full-width>
+                    <textarea matInput placeholder="Reason for job change" disabled> Nothing to say..!</textarea>
+                </mat-form-field>
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" > 
+                <mat-form-field form-full-width>
+                    <textarea matInput placeholder="Leave a comment" disabled></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div size="20" margin-top-bottom-10><b>Personality Assessments</b></div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let assessment of p_assessments; let i = index">
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2>
+                {{assessment.name}}
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2>
+                <mat-form-field>
+                    <mat-select placeholder="Give Rating" [(value)]="assessment.value[0]" disabled>
+                        <mat-option *ngFor="let value of assessment.value" [value]="value" >
+                        {{ value }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="100%" > 
+                <mat-form-field form-full-width>
+                    <textarea matInput placeholder="Leave a comment"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <a mat-button color="accent" mat-raised-button >Download Resume</a>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+            <button mat-button color="warn" mat-raised-button [mat-dialog-close]="true" >Cancel</button>
+            <button mat-button color="primary" mat-raised-button [mat-dialog-close]="true" (click)="editProfile()">Edit</button>
+        </div>
+    </form>
+</mat-card-content>

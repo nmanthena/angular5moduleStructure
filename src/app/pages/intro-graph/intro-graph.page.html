@@ -1,0 +1,9 @@
+<div doughnutChar >
+  <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"
+              [colors]="doughnutChartColors"></canvas>
+</div>

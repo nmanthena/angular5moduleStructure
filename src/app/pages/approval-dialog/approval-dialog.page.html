@@ -1,0 +1,53 @@
+<form>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" fxFlexAlign="center">
+    <mat-icon color="primary" size-34>person_outline</mat-icon>
+  </div>
+  <div fxLayout="column" fxFlexAlign="start">
+    <h4 weight-600 size-14>A new position was created by Naveen.</h4>
+    <p size-14>15/05/2017 11.00 AM.</p>
+    <p size-14>JD ID: C0937</p>
+  </div>
+</div>
+<br/>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Mandatory skills
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    HTML, CSS, HTML
+  </div>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Status
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    <mat-form-field>
+      <mat-select placeholder="Favorite food">
+        <mat-option [value]="'1'">
+          value
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div  fxLayout="row" weight-600>Leave a comment</div>
+<br/>
+  <div fxLayout="row">
+    <textarea matInput></textarea>
+  </div>
+  <br/>
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+  <button mat-raised-button btnstyle mat-dialog-close>Cancel</button>
+  <button mat-raised-button  color="primary" btnstyle >Submit</button>
+</div>
+</form>
