@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 //import { ScheduleRouting } from '../schedule/schedule.route';
 import { ScheduleRouting } from '../../routes/schedule/schedule.route';
+import { ScheduleInterviewService } from '../../services/schedule-interview/schedule.interview.service';
+
 //import { ScheduleInterviewDialogPage } from '../../pages/schedule-interview-dialog/schedule-interview-dialog.page';
 
 @NgModule({
@@ -9,6 +11,7 @@ import { ScheduleRouting } from '../../routes/schedule/schedule.route';
     CommonModule,
     ScheduleRouting
   ],
-  declarations: []
+  declarations: [],
+  providers: [ScheduleInterviewService]
 })
 export class ScheduleModule { }

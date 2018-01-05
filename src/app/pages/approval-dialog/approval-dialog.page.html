@@ -4,9 +4,9 @@
     <mat-icon color="primary" size-34>person_outline</mat-icon>
   </div>
   <div fxLayout="column" fxFlexAlign="start">
-    <h4 weight-600 size-14>A new position was created by Naveen.</h4>
-    <p size-14>15/05/2017 11.00 AM.</p>
-    <p size-14>JD ID: C0937</p>
+    <h4 weight-600 size-14>A new position was created by {{data.jobinfo.hiring_manager}}</h4>
+    <p size-14>{{data.jobinfo.date_of_request}}</p>
+    <p size-14>JD ID: {{data.jobinfo.recruitment_id}}</p>
   </div>
 </div>
 <br/>
@@ -18,10 +18,75 @@
     :
   </div>
   <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
-    HTML, CSS, HTML
+    {{data.skillsinfo.skill_set}}
   </div>
 </div>
-
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Desired skills
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    {{data.skillsinfo.skill_set}}
+  </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Job Description
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    {{data.jobinfo.job_description}}
+  </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Experience
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    {{data.jobinfo.experience}}
+  </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Education qualification
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    {{data.jobinfo.education_qualification}}
+  </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Work Location
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    {{data.jobinfo.work_location}}
+  </div>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
+    Type of Hire
+  </div>
+  <div fxLayout="column" fxFlexAlign="center">
+    :
+  </div>
+  <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
+    {{data.jobinfo.type_of_hire}}
+  </div>
+</div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
   <div fxLayout="column" text-muted fxFlex="50%" fxFlexAlign="center">
     Status
@@ -31,23 +96,24 @@
   </div>
   <div fxLayout="column" fxFlex="49%" fxFlexAlign="center">
     <mat-form-field>
-      <mat-select placeholder="Favorite food">
-        <mat-option [value]="'1'">
-          value
-        </mat-option>
+      <mat-select [(ngModel)] = 'status' name="status">
+        <mat-option *ngFor="let position of statusDropDown" [value]="position.key">
+          {{ position.value }}
+      </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 </div>
-
 <div  fxLayout="row" weight-600>Leave a comment</div>
 <br/>
   <div fxLayout="row">
-    <textarea matInput></textarea>
+    <mat-form-field fxFlexFill>
+      <textarea  matInput placeholder="Comment" [(ngModel)] = "comments" name = "comments"></textarea>
+    </mat-form-field>
   </div>
   <br/>
   <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
-  <button mat-raised-button btnstyle mat-dialog-close>Cancel</button>
-  <button mat-raised-button  color="primary" btnstyle >Submit</button>
+  <button mat-raised-button btnstyle mat-dialog-close (click) = "closeDailog()" >Cancel</button>
+  <button mat-raised-button  color="primary" btnstyle (click) = "updateJobInfo()" >Submit</button>
 </div>
 </form>

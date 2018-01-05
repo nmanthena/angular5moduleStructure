@@ -5,7 +5,7 @@ const development = {
     host: 'ek-dev-db-instance-cluster.cluster-cwmb3qfdlgqv.us-east-1.rds.amazonaws.com',
     user: 'ekdevdbadmin',
     password: 'Ea$yKn0ck$786',
-    database: 'test',
+    database: 'test1',
     connections: 100,
 };
 const qaenv = {

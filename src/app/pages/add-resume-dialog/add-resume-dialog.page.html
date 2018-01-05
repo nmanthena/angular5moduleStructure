@@ -3,46 +3,120 @@
         <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" size-24 > Candidate Information </div>
         <div fxLayout.xs="column" fxFlex="50%" fxLayoutAlign="end" >JD-C123: UI Developer</div>
     </div>
-    <form  name="can" (ngSubmit)="addCandidate()" [formGroup]="candidateObj">
+    <form  name="can" (ngSubmit)="addCandidate()" [formGroup]="candidateObj" *ngIf="candidateObj"> 
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="First Name" formControlName="fname">
+                    <input matInput placeholder="First Name" formControlName="fname" [(ngModel)]="candidate.firstName">
+                </mat-form-field>
+            </div>
+            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                    <mat-form-field form-full-width>
+                        <input matInput placeholder="Middle Name" formControlName="lname" [(ngModel)]="candidate.middleName">
+                    </mat-form-field>
+                </div>
+            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Last Name" formControlName="lname" [(ngModel)]="candidate.lastName">
+                </mat-form-field>
+            </div>
+           
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+                
+                <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                    <mat-form-field form-full-width>
+                        <input matInput placeholder="Phone no." formControlName="phone" [(ngModel)]="candidate.phone">
+                    </mat-form-field>
+                </div>
+                <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                        <mat-form-field form-full-width>
+                            <input matInput placeholder="Email id" formControlName="email" [(ngModel)]="candidate.email">
+                        </mat-form-field>
+                    </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px"> 
+        <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2> 
+                <mat-form-field>
+                    <mat-select placeholder="Source" formControlName="source" [(ngModel)]="candidate.sourceId" >                        
+                        <mat-option *ngFor="let value of sourceOfResume" [value]="value.id">
+                        {{ value.source }} 
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Mandatory skills" formControlName="mandatorySkills"  [(ngModel)]="candidate.mandatorySkills">
                 </mat-form-field>
             </div>
             <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Last Name" formControlName="lname">
+                    <input matInput placeholder="Desired skills" formControlName="desiredSkills"  [(ngModel)]="candidate.desiredskills">
                 </mat-form-field>
             </div>
-        </div>
+           
+        </div> -->
+        <!-- <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
+                <mat-form-field form-full-width>
+                    <input matInput placeholder="Work location" formControlName="fname" [(ngModel)]="candidate.workinglocation">
+                </mat-form-field>
+            </div>
+            
+        </div> -->
         <div size="20"><b>Profile Information</b></div>
-        <div fxLayout="row" fxLayoutGap="20px">
-            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
-                <mat-form-field form-full-width>
-                    <input matInput placeholder="Add Skill" [(ngModel)]="skillName" [ngModelOptions]="{standalone: true}">
+        <div size="20"><b><u>Skill Set</u></b></div>
+         
+        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let jd of jdSkillSet; let j = index">
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2>
+                {{jd.skill}}
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2> 
+                <mat-form-field>
+                    
+                        <input matInput placeholder="Total Experience"  formControlName="jdTotalskillassessment-{{j}}"
+                         [(ngModel)]="candidate.jdTotalWorkedExp[j]">
+                    
+                    <!-- <mat-select placeholder="Total Experience" formControlName="jdTotalskillassessment-{{j}}" [(ngModel)]="candidate.jdTotalWorkedExp[j]">                        
+                        <mat-option *ngFor="let value of totalExperience" [value]="value">
+                        {{ value }} 
+                        </mat-option>
+                    </mat-select> -->
                 </mat-form-field>
             </div>
-            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
-                <button mat-button color="primary" mat-raised-button (click)="addSkill()">Add Skill</button>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2> 
+                <mat-form-field>
+                        
+                                <input matInput placeholder="Last Worked"   formControlName="jdlastworkedskillassessment-{{j}}" [(ngModel)]="candidate.jdLastWorkedExp[j]">
+                         
+                    <!-- <mat-select placeholder="Last worked"  formControlName="jdlastworkedskillassessment-{{j}}" [(ngModel)]="candidate.jdLastWorkedExp[j]">                        
+                        <mat-option *ngFor="let value of lastWorkedExperience" [value]="value">
+                        {{ value }} 
+                        </mat-option>
+                    </mat-select> -->
+                    
+                </mat-form-field>
             </div>
         </div>
-        <div size="20" margin-top-bottom-10><b>Manditory Skills</b></div>
-        <mat-chip-list>
+        <!-- <div size="20" margin-top-bottom-10><b>Manditory Skills</b></div> -->
+        <!-- <mat-chip-list>
             <div *ngFor="let skill of skillsSets; let i = index">
                 <mat-chip color="accent" selected="true"> {{skill}} <mat-icon (click)="removeSkill(skill)">highlight_off</mat-icon></mat-chip>
              </div>
-        </mat-chip-list>
-        <div size="20" margin-top-bottom-10><b>Experiance Information</b></div>
+        </mat-chip-list> -->
+        <div size="20" margin-top-bottom-10><b>Experience Information</b></div>
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Experiance" [(ngModel)]="exp"  formControlName="exp">
+                    <input matInput placeholder="Experience" [(ngModel)]="candidate.exp"  formControlName="exp">
                 </mat-form-field>
             </div>
             <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Relevant Exp" [(ngModel)]="rExp" formControlName="rExp">
+                    <input matInput placeholder="Relevant Exp" [(ngModel)]="candidate.relevantExp" formControlName="rExp">
                 </mat-form-field>
             </div>
         </div>
@@ -50,73 +124,80 @@
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout.xs="column" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Fixed" [(ngModel)]="fx"  formControlName="fixedSalary">
+                    <input matInput placeholder="Fixed" [(ngModel)]="candidate.fixedSalary"  formControlName="fixedSalary" >
                 </mat-form-field>
             </div>
             <div fxLayout.xs="column" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Variable" [(ngModel)]="vb"  formControlName="vPay">
+                    <input matInput placeholder="Variable" [(ngModel)]="candidate.variablePay"  formControlName="vPay">
                 </mat-form-field>
             </div>
             <div fxLayout.xs="column" fxFlexAlign="center" >
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Bonus" [(ngModel)]="bonus"  formControlName="bonusPay">
+                    <input matInput placeholder="Bonus" [(ngModel)]="candidate.bonus"  formControlName="bonusPay">
                 </mat-form-field>
             </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" >
+                    <mat-form-field form-full-width>
+                        <input matInput placeholder="Options" [(ngModel)]="candidate.options"  formControlName="optAny">
+                    </mat-form-field>
+                </div>
+                <div fxLayout.xs="column" fxFlexAlign="center" >
+                    <mat-form-field form-full-width>
+                        <input matInput placeholder="Any Other" [(ngModel)]="candidate.anyOtherOffers"  formControlName="anyOther">
+                    </mat-form-field>
+                </div>
+                <div fxLayout.xs="column" fxFlexAlign="center" >
+                    <mat-form-field form-full-width>
+                        <input matInput placeholder="Total Salary" [(ngModel)]="candidate.totalSalary"  formControlName="total">
+                    </mat-form-field>
+                </div>
+        </div>
+        
+        <div fxLayout="row" fxLayoutGap="20px">
+                <div fxLayout.xs="column" fxFlexAlign="center" >
+                        <mat-form-field form-full-width>
+                            <input matInput placeholder="Expected Salary" [(ngModel)]="candidate.expectedCtc"  formControlName="expCtc">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" >          
+                            Expcted Salay is Negotiable &nbsp;  <mat-checkbox name="negotiable" formControlName="exCtcNegotiable" [(ngModel)]="candidate.salaryNegotiable">Yes</mat-checkbox>
+                            
+                        </div>
+            
         </div>
         <div fxLayout="row" fxLayoutGap="20px">
-            <div fxLayout.xs="column" fxFlexAlign="center" >
+        <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%">
                 <mat-form-field form-full-width>
-                    <input matInput placeholder="Options" [(ngModel)]="opt"  formControlName="optAny">
+                    <input matInput placeholder="Notice Period" [(ngModel)]="candidate.noticePeriod"  formControlName="nPeriod">
                 </mat-form-field>
-            </div>
-            <div fxLayout.xs="column" fxFlexAlign="center" >
-                <mat-form-field form-full-width>
-                    <input matInput placeholder="Any Other" [(ngModel)]="anyOther"  formControlName="anyOther">
-                </mat-form-field>
-            </div>
-            <div fxLayout.xs="column" fxFlexAlign="center" >
-                <mat-form-field form-full-width>
-                    <input matInput placeholder="Expected Salary" [(ngModel)]="expt"  formControlName="expCtc">
-                </mat-form-field>
-            </div>
-        </div>
-        <div fxLayout="row" fxLayoutGap="20px">
-            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%">
-                <mat-form-field form-full-width>
-                    <input matInput placeholder="Notice Period" [(ngModel)]="noticep"  formControlName="nPeriod">
-                </mat-form-field>
-            </div>
-        </div>
-        <div fxLayout="row" fxLayoutGap="20px" size-12>
-            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" >          
-                Expcted Salay is Negotiable check if &nbsp;  <mat-checkbox name="negotiable" formControlName="exCtcNegotiable">Yes</mat-checkbox>
             </div>
             <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" >
-                Expcted Salay is Negotiable check if &nbsp; <mat-checkbox name="negotiable-notice" formControlName="nPeriodNegotiable">Yes</mat-checkbox>                
-            </div>
+                    Is it Buyable&nbsp; <mat-checkbox name="negotiable-notice" formControlName="nPeriodNegotiable" [(ngModel)]="candidate.isItBuyable">Yes</mat-checkbox>                
+                </div>
         </div>
+         
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" > 
                 <mat-form-field form-full-width>
-                    <textarea matInput placeholder="Reason for job change" formControlName="reasonFroChange"></textarea>
+                    <textarea matInput placeholder="Reason for job change" [(ngModel)]="candidate.reasonForChange" formControlName="reasonFroChange"></textarea>
                 </mat-form-field>
             </div>
-            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" > 
+            <!-- <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" > 
                 <mat-form-field form-full-width>
-                    <textarea matInput placeholder="Leave a comment" formControlName="extraComments"></textarea>
+                    <textarea matInput placeholder="Leave a comment" [(ngModel)]="candidate.comments" formControlName="extraComments"></textarea>
                 </mat-form-field>
-            </div>
+            </div> -->
         </div>
         <div size="20" margin-top-bottom-10><b>Personality Assessments</b></div>
-        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let assessment of p_assessments; let i = index">
+        <div fxLayout="row" fxLayoutGap="10px" *ngFor="let assessment of personalSkillAssesments; let i = index">
             <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2>
-                {{assessment.name}}
+                {{assessment.assessment_desc}}
             </div>
             <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2> 
                 <mat-form-field>
-                    <mat-select placeholder="Give Rating" [(value)]="assessment.selected" formControlName="assessment-{{i}}">                        
-                        <mat-option *ngFor="let value of assessment.value" [value]="value">
+                    <mat-select placeholder="Give Rating" formControlName="assessment-{{i}}" [(ngModel)]="candidate.ratingOfAssessment[i]" (ngModelChange)="calculateOverAllRating(i,candidate.ratingOfAssessment[i])">                        
+                        <mat-option *ngFor="let value of defaultRating" [value]="value">
                         {{ value }} 
                         </mat-option>
                     </mat-select>
@@ -124,14 +205,28 @@
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2>
+                <span>Overall Rating</span>
+
+            </div>
+            <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="50%" padding-top-bottom-2>
+                
+                <input matInput  [(ngModel)]="candidate.overallRating"  formControlName="overallRating" readonly> 
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout.xs="column" fxFlexAlign="center" fxFlex="100%" > 
                 <mat-form-field form-full-width>
-                    <textarea matInput placeholder="Leave a comment" formControlName="leaveFeedback"></textarea>
+                    <textarea matInput placeholder="Leave a comment" [(ngModel)]="candidate.finalComments" formControlName="leaveFeedback"></textarea>
                 </mat-form-field>
             </div>
         </div>
         <div fxLayout="row" fxLayoutGap="20px">
-                <input placeholder="Upload Resume" type="file" formControlName="resume">
+            <button mat-button color="accent" onclick="document.getElementById('file').click()" (click)="$event.preventDefault()">Upload Resume</button>
+            <input id="file" style="display:none" placeholder="Upload Resume" type="file"
+            (change)="onFileChange($event)"
+            >
+            <span>{{selectedFileName}}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
             <button mat-button color="warn" mat-raised-button [mat-dialog-close]="true" >Cancel</button>

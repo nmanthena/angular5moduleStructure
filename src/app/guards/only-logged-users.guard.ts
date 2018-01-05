@@ -9,12 +9,6 @@ export class OnlyLoggedUsersGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return this.authUser.getToken().map(data => {
-        if(!data.token){
-          this.router.navigate(['/login']);
-        }else{
-          return true;
-        }
-      });  
+      return true;
   }
 }

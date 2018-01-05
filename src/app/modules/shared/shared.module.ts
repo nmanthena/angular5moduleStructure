@@ -9,6 +9,8 @@ import { RoutingModule } from "../../routes/routing.module";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 import { ChartsModule } from 'ng2-charts';
+import { MessageComponent } from '../../components/message/message.component';
+import { NgxMessagesModule } from 'ngx-messages';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,9 +23,10 @@ import { ChartsModule } from 'ng2-charts';
     RoutingModule,
     FlexLayoutModule,
     DateTimePickerModule,
-    ChartsModule
+    ChartsModule,
+    NgxMessagesModule.configure({ showErrorsOnlyIfInputDirty: false })
   ],
-  declarations: [],
+  declarations: [MessageComponent],
   exports:[
     MaterialModule,
     BrowserAnimationsModule,
@@ -34,7 +37,9 @@ import { ChartsModule } from 'ng2-charts';
     RoutingModule,
     FlexLayoutModule,
     DateTimePickerModule,
-    ChartsModule
+    ChartsModule,
+    MessageComponent,
+    NgxMessagesModule
   ]
 })
 export class SharedModule { }

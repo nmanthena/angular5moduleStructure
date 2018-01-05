@@ -1,112 +1,169 @@
 <div>
-<form (ngSubmit)="onNewJobSubmit()" [formGroup]="newjob" novalidate>
+<form (ngSubmit)="onNewJobSubmit(newjobForm.value)" [formGroup]="newjobForm" novalidate>
 <div size-28 margin-bottom-15>New Job Description</div>
-<div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)" >
-    <input matInput placeholder="Title of the position" [(ngModel)]="titleposition" formControlName="titleposition">
-    <mat-error *ngIf="newjob.controls.email.errors">This field is required</mat-error>
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <mat-select placeholder="No of Positions" [(ngModel)]="numberofpositions" formControlName="numberofpositions">
-      <mat-option value="option">1</mat-option>
-    </mat-select>
-  </mat-form-field>
 
+<div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
+    <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+        <mat-select placeholder="JD for" formControlName="designationOfferd">
+          <mat-option *ngFor="let position of designationDropDown" [value]="position.key">
+            {{ position.value }}
+          </mat-option>
+          <mat-error>{{newJobErrors.projectName}}</mat-error>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+          <input matInput  matInput placeholder="Title of the position" formControlName = "titleOfPosition">
+          <mat-error>{{newJobErrors.titleOfPosition}}</mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+        <input matInput placeholder="No of Positions" formControlName = "numberOfPositiions">
+        <mat-error>{{newJobErrors.numberOfPositiions}}</mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlexFill>
+        <textarea  matInput placeholder="Job Description" formControlName = "jobDescription"></textarea>
+        <mat-error>{{newJobErrors.jobDescription}}</mat-error>
+      </mat-form-field>
+    <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+      <input matInput placeholder="Experience" formControlName = "experience">
+      <mat-error>{{newJobErrors.experience}}</mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 1 calc(15em + 20px)" >
+        <input matInput placeholder="Education Qualification" formControlName="educationQualification">
+        <mat-error>{{newJobErrors.educationQualification}}</mat-error>
+    </mat-form-field>
   <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <mat-select placeholder="Experience" [(ngModel)]="experience" formControlName="experience">
-      <mat-option value="option">1</mat-option>
-    </mat-select>
+    <input matInput placeholder="Mandatory Skills" formControlName="mandatorySkills">
+    <mat-error>{{newJobErrors.mandatorySkills}}</mat-error>
   </mat-form-field>
   <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Mandatory Skills" [(ngModel)]="mandatoryskills" formControlName="mandatoryskills">
+    <input matInput placeholder="Desired Skill" formControlName="desiredSkills">
+    <mat-error>{{newJobErrors.desiredSkills}}</mat-error>
   </mat-form-field>
   <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Desired Skill">
+      <input matInput placeholder="Number Of Technical Rounds" formControlName="numberOfTechRounds">
+      <mat-error>{{newJobErrors.numberOfTechRounds}}</mat-error>
   </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)" >
-    <input matInput placeholder="Education Qualification" [(ngModel)]="qualification" formControlName="qualification">
-  </mat-form-field>
+  
 </div>
-<div size-15 margin-bottom-15 bold>Offer Details</div>
-<!--<div fxLayout="row">
-    <section fxLayout="row" fxLayoutWrap fxLayoutGap="50px" form-full-width>
-      <mat-checkbox fxLayout="column" color="primary" [(ngModel)]="Hyderabad">Hyderabad</mat-checkbox>
-      <mat-checkbox fxLayout="column" color="primary" [(ngModel)]="Chennai">Chennai</mat-checkbox>
-      <mat-checkbox fxLayout="column" color="primary" [(ngModel)]="Bangalore">Bangalore</mat-checkbox>
-    </section>
+<!--<div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px" margin-top-30 fxFlexFill>
+  <mat-form-field fxFlexFill>
+    <textarea  matInput placeholder="Title of the position" formControlName = "titleOfPosition"></textarea>
+    <mat-error>{{newJobErrors.titleOfPosition}}</mat-error>
+  </mat-form-field>
 </div>-->
+<!--<div size-15 margin-bottom-15 bold>Offer Details</div>-->
 <div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px" margin-top-30>
   <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <mat-select placeholder="Company">
-      <mat-option value="option">Option</mat-option>
+    <mat-select placeholder="Company" formControlName = "company">
+      <mat-option *ngFor="let position of companyDropDown" [value]="position.key">
+        {{ position.value }}
+      </mat-option>
+      <mat-error>{{newJobErrors.company}}</mat-error>
     </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+    <mat-select placeholder="Job Location" formControlName="jobLocation">
+      <mat-option *ngFor="let position of locationDropDown" [value]="position.key">
+        {{ position.value }}
+      </mat-option>
+      <mat-error>{{newJobErrors.jobLocation}}</mat-error>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+      <mat-select placeholder="Work Location" formControlName="workLocation">
+          <mat-option *ngFor="let position of locationDropDown" [value]="position.key">
+            {{ position.value }}
+          </mat-option>
+          <mat-error>{{newJobErrors.workLocation}}</mat-error>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+        <mat-select placeholder="Type of Employment" formControlName="typeOfEmployment">
+             <mat-option *ngFor="let position of typeOfEmploymentDropDown" [value]="position.key">
+               {{ position.value }}
+             </mat-option>
+             <mat-error>{{newJobErrors.typeOfEmployment}}</mat-error>
+         </mat-select>
+       </mat-form-field>
+      <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+        <mat-select placeholder="Type of hire" formControlName = "typeOfHire">
+            <mat-option *ngFor="let position of typeOfHireDropDown" [value]="position.key">
+                {{ position.value }}
+            </mat-option>
+            <mat-error>{{newJobErrors.typeOfHire}}</mat-error>
+        </mat-select>
+      </mat-form-field>
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+    <input matInput placeholder="Project Name" formControlName = "projectName">
+    <mat-error>{{newJobErrors.numberOfPositiions}}</mat-error>
   </mat-form-field>
 
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Location">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Project Name">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Designation Offered">
-  </mat-form-field>
     <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Reporting Manager">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Candidate Work Location">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <mat-select placeholder="Type of Employment">
-      <mat-option value="option">Option</mat-option>
+    <mat-select placeholder="Reporting Manager" formControlName="reportManager">
+        <mat-option *ngFor="let manager of reportManagerDropDown" [value]="manager.userId">
+          {{manager.userEmail }}
+        </mat-option>
+        <mat-error>{{newJobErrors.reportManager}}</mat-error>
     </mat-select>
   </mat-form-field>
-    <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <mat-select placeholder="Type of hire">
-      <mat-option value="option">Option</mat-option>
+    
+  <!--<mat-form-field fxFlex="0 1 calc(15em + 20px)">
+    <input matInput placeholder="Project/Business" formControlName = "projectBusiness">
+    <mat-error>{{newJobErrors.projectBusiness}}</mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+    <input matInput [matDatepicker]="dateOfRequest" placeholder="Angular forms" formControlName = "dateOfRequest">
+      <mat-datepicker-toggle matSuffix [for]="dateOfRequest"></mat-datepicker-toggle>
+      <mat-datepicker #dateOfRequest></mat-datepicker>
+  </mat-form-field>-->
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+    <input matInput placeholder="Salary Budget Range(LPA) From" formControlName = "salaryFrom">
+    <mat-error>{{newJobErrors.salaryFrom}}</mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+      <input matInput placeholder="Salary Budget Range(LPA) To" formControlName = "salaryTo">
+      <mat-error>{{newJobErrors.salaryTo}}</mat-error>
+    </mat-form-field>
+  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
+    <mat-select placeholder="Final Approval authority (Delivery head)" formControlName="finalApprovalName">
+        <mat-option *ngFor="let manager of approvalEmailDropDown" [value]="manager.userId">
+          {{manager.userEmail }}
+        </mat-option>
+        <mat-error>{{newJobErrors.finalApprovalName}}</mat-error>
     </mat-select>
   </mat-form-field>
   <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Project/Business">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <mat-select placeholder="Date of Request">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Salary Budget Range(LPA)">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Final Approval authority (Delivery head)">
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)">
-    <input matInput placeholder="Resource Required by Date">
+    <input matInput [matDatepicker]="resourceRequiredDate" placeholder="Resource Required by Date" formControlName = "resourceRequiredDate">
+    <mat-datepicker-toggle matSuffix [for]="resourceRequiredDate"></mat-datepicker-toggle>
+    <mat-datepicker #resourceRequiredDate></mat-datepicker>
   </mat-form-field>
 </div>
 
 <div size-15 margin-bottom-15 bold>Get Approval</div>
 <div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px">
+  <!--<mat-form-field fxFlex="0 1 calc(15em + 20px)" >
+    <input matInput placeholder="Name" formControlName="approvalName">
+  </mat-form-field>-->
   <mat-form-field fxFlex="0 1 calc(15em + 20px)" >
-    <input matInput placeholder="Name" formControlName="name" [(ngModel)]="name">
-    <mat-error *ngIf="newjob.controls.name.errors">This field is required</mat-error>
-  </mat-form-field>
-  <mat-form-field fxFlex="0 1 calc(15em + 20px)" >
-    <input matInput placeholder="Email" type="text" formControlName="email" [(ngModel)]="email"> 
-     <mat-error *ngIf="newjob.controls.email.errors">This field is required</mat-error>
+    <mat-select placeholder="Email" formControlName="approvalEmail">
+        <mat-option *ngFor="let manager of approvalEmailDropDown" [value]="manager.userId">
+          {{manager.userEmail }}
+        </mat-option>
+        <mat-error>{{newJobErrors.approvalEmail}}</mat-error>
+    </mat-select>
   </mat-form-field>
 </div>
 
 <div fxLayout="row" fxFlexAlign="center" fxLayoutWrap fxLayoutGap="20px" margin-top-30 fxFlexFill>
   <mat-form-field fxFlexFill>
-    <textarea  matInput placeholder="Leave a comment"></textarea>
+    <textarea  matInput placeholder="Leave a comment" formControlName = "comment"></textarea>
+    <mat-error>{{newJobErrors.comment}}</mat-error>
   </mat-form-field>
 </div>
 
 <div fxLayout="row" fxFlexAlign="end" fxLayoutAlign="end" fxLayoutWrap fxLayoutGap="20px" margin-top-30 fxFlexFill>
-  <button mat-raised-button btnstyle  fxFlexAlign="end" mat-dialog-close>Cancel</button>
-  <button mat-raised-button  color="accent" btnstyle  fxFlexAlign="end">Submit</button>
+  <button mat-raised-button btnstyle  fxFlexAlign="end" mat-dialog-close (click) = "closeDailog()">Cancel</button>
+  <button mat-raised-button  color="accent" btnstyle  fxFlexAlign="end" [disabled]="newjobForm.invalid" >Submit</button>
 </div>
 </form>
 </div>

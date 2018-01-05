@@ -12,27 +12,30 @@ import { AddInterviewRoudsDialogPage } from '../../pages/add-interview-rouds-dia
 import { OfferDetailsPage } from "../../pages/offer-details/offer-details.page";
 import { IntroGraphPage } from "../../pages/intro-graph/intro-graph.page";
 import { OnlyLoggedUsersGuard } from "../../guards/only-logged-users.guard";
+import { InterviewerFeedbackDialogPage } from '../../pages/interviewer-feedback-dialog/interviewer-feedback-dialog.page';
+import { InterviewerFeedbackApprovalDialogPage } from '../../pages/interviewer-feedback-approval-dialog/interviewer-feedback-approval-dialog.page';
 
 const routes: Routes = [
     {
         path: 'main', component: MainPage,
         children: [
-            { path: '', redirectTo: '/main/dashboard', pathMatch: 'full', canActivate: [OnlyLoggedUsersGuard] },
-            { path: 'intro', component: IntroGraphPage },
+            { path: '', redirectTo: '/main/dashboard', pathMatch: 'full',  canActivate: [OnlyLoggedUsersGuard]},
+            { path: 'intro', component: IntroGraphPage,  canActivate: [OnlyLoggedUsersGuard]},
             {
                 path: 'dashboard', component: DashboardViewPage, canActivate: [OnlyLoggedUsersGuard],
                 children: [
                     { path: 'new-job', component: NewJobDialogPage },
                     { path: 'schedule', component: ScheduleInterviewDialogPage },
                     { path: 'approval', component: ApprovalDialogPage },
-                    { path: 'offer', component: OfferDetailsPage },
+                    { path: 'feedback', component:InterviewerFeedbackDialogPage},
+                    { path: 'feedback-approval', component:InterviewerFeedbackApprovalDialogPage}
                 ]
             }, 
-            {path:'positions-listing',component:PositionsListingPage, canActivate: [OnlyLoggedUsersGuard]},
-            {path: 'view-position', component:ViewPositionPage, canActivate: [OnlyLoggedUsersGuard], 
+            {path:'positions-listing/:id',component:PositionsListingPage, canActivate: [OnlyLoggedUsersGuard]},
+            {path: 'view-position/:id', component:ViewPositionPage, canActivate: [OnlyLoggedUsersGuard], 
             children:[
                 {path:'add-resume',component:AddResumeDialogPage},    
-                {path:'view-profile',component:ViewCandiateProfilePage},    
+                {path:'view-profile/:id',component:ViewCandiateProfilePage},    
                 {path: 'add-interview-rounds',component:AddInterviewRoudsDialogPage}
             ]
             },

@@ -24,66 +24,51 @@
     </div>
     </div>
     <div fxLayout="column" padding-left-right-30 lightBackground>
-    <!--Active positions-->
-    <div fxLayout="row" margin-top-15  bottomGreenborder >
-        <div fxLayout.xs="column" size-22 italic padding-top-bottom-6>
-          Active Positions
-        </div>
+
+      <!--Active positions-->
+  <div fxLayout="row" margin-top-15  bottomGreenborder *ngIf="positionId == 1">
+      <div fxLayout.xs="column" size-22 italic padding-top-bottom-6>
+        <p>Active Positions</p>
+      </div>
     </div>
-      <div whiteBg fxLayout="row" fxFlexAlign="center" fxLayoutAlign="stretch"  fxLayoutGap="20px" bottomBorder padding-top-bottom-15 form-full-width>
-        <div fxLayout="column" fxFlex="50px">
-          <div size-14 fxFlexAlign="center">1</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div size-12 gray>Skills</div>
-          <div  size-14>HTML5,CSS3,Javascript</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Experience</div>
-          <div  size-14>4+</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Experience</div>
-          <div  size-14>4+</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Experience</div>
-          <div  size-14>4+</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Interview rounds</div>
-          <div size-14>3</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-            <a btnstyle color="primary" mat-raised-button fxFlexAlign="end" href="/#/main/view-position" margin-right-15>View Position</a>
+    <div fxLayout="row" margin-top-15  bottomOrangeborder *ngIf="positionId == 2">
+        <div fxLayout.xs="column" size-22 italic padding-top-bottom-6>
+          <p>Pending Positions</p>
         </div>
       </div>
-      <div whiteBg fxLayout="row" fxFlexAlign="center" fxLayoutAlign=" stretch"  fxLayoutGap="20px" bottomBorder padding-top-bottom-15 form-full-width>
-        <div fxLayout="column" fxFlex="50px">
-          <div size-14 fxFlexAlign="center">1</div>
+      <div fxLayout="row" margin-top-15  bottomBlackborder *ngIf="positionId == 3">
+          <div fxLayout.xs="column" size-22 italic padding-top-bottom-6>
+            <p>Inctive Positions</p>
+          </div>
         </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div size-12 gray>Skills</div>
-          <div  size-14>HTML5,CSS3,Javascript</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Experience</div>
-          <div  size-14>4+</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Experience</div>
-          <div  size-14>4+</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Experience</div>
-          <div  size-14>4+</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-          <div  size-12 gray>Interview rounds</div>
-          <div size-14>3</div>
-        </div>
-        <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-            <a btnstyle fxFlexAlign="end" color="primary" href="/#/main/view-position" mat-raised-button  margin-right-15>View Position</a>
-        </div>
+    <ng-container  *ngFor="let pos of positionData let i = index">
+    <div whiteBg fxLayout="row" fxFlexAlign="center" fxLayoutAlign=" stretch"  fxLayoutGap="20px" bottomBorder padding-top-bottom-15 form-full-width>
+      <div fxLayout="column" fxFlex="50px">
+        <div size-14 fxFlexAlign="center" >{{i+1}}</div>
       </div>
+      <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
+        <div size-12 gray>Skills</div>
+        <div  size-14>{{pos.skills}}</div>
       </div>
+      <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
+        <div  size-12 gray>Experience</div>
+        <div  size-14>{{pos.experience}}</div>
+      </div>
+      <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
+        <div  size-12 gray>Education</div>
+        <div  size-14>{{pos.education_qualification}}</div>
+      </div>
+      <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
+        <div  size-12 gray>Work Location</div>
+        <div  size-14>{{pos.location}}</div>
+      </div>
+      <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
+        <div  size-12 gray>No of Posstions</div>
+        <div size-14>{{pos.no_of_positions}}</div>
+      </div>
+      <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
+          <a btnstyle fxFlexAlign="end" color="primary" [routerLink]="['/main/view-position',pos.recruitment_id]" mat-raised-button  margin-right-15>View Position</a>
+      </div>
+    </div>
+  </ng-container>
+    

@@ -42,6 +42,9 @@ body{
     padding-top:2px;
     font-size: 12px;
 }
+[link]{
+    outline:none;
+}
 @for $i from 0 through 50 {
     [size-#{$i}],
    [size-#{$i}] * {
@@ -174,4 +177,13 @@ body{
    }
    [color-black]{
        color:rgba(0, 0, 0, 0.87);
+   }
+   [color-light-black]{
+       color: rgba(0, 0, 0, 0.67);
+   }
+   hr{
+        border: none;
+        height: 1px;
+        color: #e2e2e2;
+        background-color: #e2e2e2; 
    }

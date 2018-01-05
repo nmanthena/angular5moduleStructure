@@ -1,11 +1,12 @@
 
 <!--Active positions-->
 <div fxLayout="row" margin-20  bottomGreenborder padding-top-bottom-15 >
-    <div fxLayout.xs="column"  fxFlex="20%"  fxFlexAlign="center" >
-     JD-C123: UI Developer 
+    <div fxLayout.xs="column"  fxFlex="30%"  fxFlexAlign="center" >
+     JD-{{singlePosDetails.designation}}: {{singlePosDetails.job_description}}
     </div>
-    <div fxLayout.xs="column" fxFlex="20%" fxFlexAlign="center" >Status : &nbsp; <mat-icon color="primary"   >thumb_up</mat-icon>  &nbsp; Active</div>
-    <div fxLayout.xs="column" fxFlex="30%"  fxFlexAlign="center" >Posted Date : &nbsp; <mat-icon color="primary" >watch_later</mat-icon>  &nbsp;  Dec-15-2017 2:00 PM</div>
+    <div fxLayout.xs="column" fxFlex="20%" fxFlexAlign="center" *ngIf="singlePosDetails">Status : &nbsp; <mat-icon color="primary">thumb_up</mat-icon>  &nbsp; Active</div>
+    <div fxLayout.xs="column" fxFlex="20%" fxFlexAlign="center" *ngIf="singlePosDetails.status == 2">Status : &nbsp; <mat-icon color="warning">thumb_down</mat-icon>  &nbsp; inactive</div>
+    <div fxLayout.xs="column" fxFlex="30%"  fxFlexAlign="center" >Posted Date : &nbsp; <mat-icon color="primary" >watch_later</mat-icon>  &nbsp;  {{singlePosDetails.date_of_request}}</div>
     <div fxLayout="column" fxFlex="30%" fxFlexAlign="start">
         <div fxLayout="row" fxLayoutGap="20px" >
           <button (click)="addCandidate();" color="primary" fxLayoutAlign="left" btnstyle mat-raised-button fxFlex="50" ><mat-icon size-18 role="img" aria-hidden="true">add</mat-icon>Add Candidate </button>
@@ -20,23 +21,15 @@
       <b>Manditory Skills :</b>
     </div>
     <div fxLayout="column" fxFlex="70%" fxFlexAlign="start">
-      HTML5,CSS3,Javascript, HTML5,CSS3,Javascript, HTML5,CSS3,Javascript, HTML5,CSS3,Javascript
+          {{skills.skill_set}}     
     </div>
   </div>
-  <div whiteBg fxLayout="row"   fxLayoutAlign="right" >
-      <div fxLayout="column" fxFlex="30%">
-        <b >Desired Skills :</b>
-      </div>
-      <div fxLayout="column" fxFlexAlign="start ">
-        <div>Something new</div>
-      </div>
-    </div>
   <div whiteBg fxLayout="row"   fxLayoutAlign="right"  >
         <div fxLayout="column" fxFlex="30%">
           <b >Job Description :</b>
         </div>
         <div fxLayout="column" fxFlexAlign="start" fxFlex="70%">
-          <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+          {{singlePosDetails.job_description}}
         </div>
       </div>
       <div whiteBg fxLayout="row"   fxLayoutAlign="right"  >
@@ -44,7 +37,7 @@
             <b >Experiance :</b>
           </div>
           <div fxLayout="column" fxFlexAlign="center">
-            <div>Min 4 to 10 Yrs</div>
+            <div>{{singlePosDetails.experience}}</div>
           </div>
       </div>
       <div whiteBg fxLayout="row"  fxLayoutAlign="right" >
@@ -52,7 +45,7 @@
             <b >Eductions :</b>
           </div>
           <div fxLayout="column" fxFlexAlign="center">
-            <div>Any</div>
+            <div>{{singlePosDetails.education_qualification}}</div>
           </div>
       </div>
       <div whiteBg fxLayout="row"   fxLayoutAlign="right"  >
@@ -60,7 +53,7 @@
             <b >Work Location :</b>
           </div>
           <div fxLayout="column" fxFlexAlign="center">
-            <div>Hydarabad</div>
+            <div>{{singlePosDetails.work_location}}</div>
           </div>
       </div>
       <div whiteBg fxLayout="row"   fxLayoutAlign="right" >
@@ -68,7 +61,7 @@
             <b >Type of hire :</b>
           </div>
           <div fxLayout="column" fxFlexAlign="center">
-            <div>Permanent</div>
+            <div>{{singlePosDetails.type_of_hire}}</div>
           </div>
       </div>
       <div whiteBg fxLayout="row"   fxLayoutAlign="right"  >
@@ -76,7 +69,7 @@
             <b >Hiring Manager :</b>
           </div>
           <div fxLayout="column" fxFlexAlign="center">
-            <div>Naveen</div>
+            <div>{{singlePosDetails.hiring_manager}}</div>
           </div>
       </div>
       <div whiteBg fxLayout="row"   fxLayoutAlign="right"  >
@@ -84,7 +77,15 @@
             <b >Project :</b>
           </div>
           <div fxLayout="column" fxFlexAlign="center">
-            <div>Easy Knock</div>
+            <div>{{singlePosDetails.project_name}}</div>
+          </div>
+      </div>
+      <div whiteBg fxLayout="row"   fxLayoutAlign="right"  >
+          <div fxLayout="column" fxFlex="30%">
+            <b >Company :</b>
+          </div>
+          <div fxLayout="column" fxFlexAlign="center">
+            <div>{{singlePosDetails.company}}</div>
           </div>
       </div>
   </div>
@@ -92,95 +93,44 @@
 
   <div fxFlex="70%" fxFlex.xs="100%" padding-Left-15>
       <div fxLayout="row" fxFlexAlign="center" size-22 fxLayoutAlign=" stretch">
-          Profiles
+          Profiles - [{{candidates.length}}]
       </div>
+      <ng-container *ngFor="let candidate of candidates let i = index">
       <div fxLayout="row" fxFlexAlign="center" fxLayoutAlign=" stretch"  fxLayoutGap="20px" bottomBorder padding-top-bottom-15 >
           <div fxLayout="column" fxFlex="50px" fxFlexAlign="center">
             <mat-icon>assignment_ind</mat-icon>
           </div>
           <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
             <div size-12 gray>Name</div>
-            <div  size-14>Naresh M</div>
+            <div  size-14>{{candidate.first_name}}</div>
           </div>
           <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
             <div  size-12 gray>Experience</div>
-            <div  size-14>4+</div>
+            <div  size-14>{{candidate.total_experiance}}</div>
           </div>
           <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
             <div  size-12 gray>Notice Period</div>
             <div  size-14>60 Days</div>
           </div>
           <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-            <div  size-12 gray>Skills</div>
-            <div  size-14>HTML, CSS, Javascript</div>
+            <div  size-12 gray>Contact Details</div>
+            <div  size-14>{{candidate.phone_number}}<br/>{{candidate.email_id}}</div>
           </div>
           <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
             <div  size-12 gray>Staus</div>
-            <div size-14>Inprogress</div>
+            <div size-14>{{candidate.status}}</div>
           </div>
-          <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <button btnstyle color="primary" mat-raised-button fxFlexAlign="end" (click)="viewProfile()" margin-right-15>View Profile</button>
+          <div fxLayout="column" fxFlex="50px">
+              <button noMinWid mat-raised-button fxFlexAlign="end" title="View Profile" (click)="viewProfile(candidate.candidate_id, candidate.candidate_recruitment_id)"  margin-right-15><mat-icon>visibility</mat-icon></button>
           </div>
-          <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <button btnstyle color="primary" mat-raised-button fxFlexAlign="end" (click)="addInterviewRounds()" margin-right-15>Add Rouds</button>
+          <div fxLayout="column" fxFlex="50px">
+              <button noMinWid mat-raised-button fxFlexAlign="end" title="Schedule Profile" (click)="addInterviewRounds()" margin-right-15><mat-icon>add_alarm</mat-icon></button>
+          </div>
+          <div fxLayout="column" fxFlex="50px">
+              <button noMinWid mat-raised-button fxFlexAlign="end" title="Download" margin-right-15><mat-icon>file_download</mat-icon></button>
           </div>
         </div>
-        <div fxLayout="row" fxFlexAlign="center" fxLayoutAlign=" stretch"  fxLayoutGap="20px" bottomBorder padding-top-bottom-15>
-            <div fxLayout="column" fxFlex="50px" fxFlexAlign="center">
-              <mat-icon>assignment_ind</mat-icon>
-            </div>
-            <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <div size-12 gray>Name</div>
-              <div  size-14>Naresh M</div>
-            </div>
-            <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <div  size-12 gray>Experience</div>
-              <div  size-14>4+</div>
-            </div>
-            <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <div  size-12 gray>Notice Period</div>
-              <div  size-14>60 Days</div>
-            </div>
-            <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <div  size-12 gray>Skills</div>
-              <div  size-14>HTML, CSS, Javascript</div>
-            </div>
-            <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-              <div  size-12 gray>Staus</div>
-              <div size-14>Inprogress</div>
-            </div>
-            <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                <button (click)="viewProfile()" btnstyle color="primary" mat-raised-button fxFlexAlign="end" margin-right-15>View Profile</button>
-            </div>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" fxLayoutAlign=" stretch"  fxLayoutGap="20px" bottomBorder padding-top-bottom-15>
-              <div fxLayout="column" fxFlex="50px" fxFlexAlign="center">
-                <mat-icon>assignment_ind</mat-icon>
-              </div>
-              <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                <div size-12 gray>Name</div>
-                <div  size-14>Naresh M</div>
-              </div>
-              <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                <div  size-12 gray>Experience</div>
-                <div  size-14>4+</div>
-              </div>
-              <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                <div  size-12 gray>Notice Period</div>
-                <div  size-14>60 Days</div>
-              </div>
-              <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                <div  size-12 gray>Skills</div>
-                <div  size-14>HTML, CSS, Javascript</div>
-              </div>
-              <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                <div  size-12 gray>Staus</div>
-                <div size-14>Inprogress</div>
-              </div>
-              <div fxLayout="column" fxFlex="0 1 calc(15em + 20px)">
-                  <button (click)="viewProfile()" btnstyle color="primary" mat-raised-button fxFlexAlign="end" margin-right-15>View Profile</button>
-              </div>
-            </div>
+      </ng-container>
   </div>
 
 

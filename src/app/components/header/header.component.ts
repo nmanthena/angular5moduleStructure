@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { LoginPage } from '../../pages/login/login.page';
 import { Router } from '@angular/router';
@@ -12,8 +12,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+@Input() email:any;
+
   constructor(private auth:AuthenticationService,
   private router:Router
+
   ) { }
 
   ngOnInit() {

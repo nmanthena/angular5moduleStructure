@@ -14,16 +14,22 @@ import { AddResumeDialogPage } from '../../pages/add-resume-dialog/add-resume-di
 import { ViewCandiateProfilePage } from '../../pages/view-candiate-profile/view-candiate-profile.page';
 import { ApprovalDialogPage } from '../../pages/approval-dialog/approval-dialog.page';
 import { AddInterviewRoudsDialogPage } from '../../pages/add-interview-rouds-dialog/add-interview-rouds-dialog.page';
-import { OfferDetailsPage } from '../../pages/offer-details/offer-details.page';
 import { OnlyLoggedUsersGuard } from '../../guards/only-logged-users.guard';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { JobcreationService } from './../../services/jobcreation/jobcreation.service';
+import { FeedbackService } from '../../services/feedback/feedback.service';
+import { OfferModule } from "../offer/offer.module";
+import { InterviewerFeedbackDialogPage } from '../../pages/interviewer-feedback-dialog/interviewer-feedback-dialog.page';
+import { InterviewerFeedbackApprovalDialogPage } from '../../pages/interviewer-feedback-approval-dialog/interviewer-feedback-approval-dialog.page';
+import { DashboardService } from '../../services/dashboard/dashboard.service';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     DashboardRouting,
-    ScheduleModule
+    ScheduleModule,
+    OfferModule
   ],
   declarations: [
     MainPage,
@@ -37,8 +43,9 @@ import { AuthenticationService } from '../../services/authentication/authenticat
     ViewCandiateProfilePage,
     ApprovalDialogPage,
     AddInterviewRoudsDialogPage,
-    OfferDetailsPage,
+    InterviewerFeedbackDialogPage,
+    InterviewerFeedbackApprovalDialogPage,
   ],
-  providers:[AuthenticationService, OnlyLoggedUsersGuard]
+  providers: [ AuthenticationService, OnlyLoggedUsersGuard, JobcreationService, FeedbackService, DashboardService ]
 })
 export class DashboardModule { }

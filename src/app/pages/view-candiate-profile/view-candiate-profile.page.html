@@ -1,24 +1,40 @@
 <mat-card-content>
     <div fxLayout="row" bottomGreenborder padding-top-bottom-15>
         <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" size-24 > Candidate Information </div>
-        <div fxLayout.xs="column" fxFlex="50%" fxLayoutAlign="end" >CID: CT001</div>
+        <div fxLayout.xs="column" fxFlex="50%" fxLayoutAlign="end" >CID: {{candidateInfo.candidate_id}}</div>
     </div>
     <form class="example-form" name="can">
-      <div size="20"><b>Profile Information</b></div>
+      <div size="20"><b>Profile Information</b></div> <br/>
         <div fxLayout="row" fxLayoutGap="20px">
-            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
-                Naresh Manthena
+            <div fxLayout.xs="column" fxFlex="70%" fxFlexAlign="center" >
+               <b>Name:</b>&nbsp; {{candidateInfo.first_name}} &nbsp; {{candidateInfo.last_name}}, &nbsp;&nbsp; <b>M: &nbsp;</b>{{candidateInfo.phone_number}}, &nbsp;&nbsp;<b>E: &nbsp;</b><a href="mailto:{{candidateInfo.email_id}}">{{candidateInfo.email_id}}</a>
             </div>
-            <div fxLayout.xs="column" fxFlex="50%" fxFlexAlign="center" >
-                Experiance: 8 Years
+            <div fxLayout.xs="column" fxFlex="30%" fxFlexAlign="center" >
+                <b>Experiance:</b>  &nbsp; {{candidateInfo.total_experiance }} Years
             </div>
         </div>
-        <div size="20" margin-top-bottom-10><b>Primary Skills</b></div>
-        <mat-chip-list>
-            <div *ngFor="let skill of skillsSets; let i = index">
-                <mat-chip color="accent" selected="true"> {{skill}}</mat-chip>
-             </div>
-        </mat-chip-list>
+        <div fxLayout="row" fxLayoutGap="20px" margin-top-15>
+            <div fxLayout.xs="column" fxFlex="40%" fxFlexAlign="center" >
+                <b>Skill Set</b>
+            </div>
+            <div fxLayout.xs="column" fxFlex="30%" fxFlexAlign="center" >
+                <b>Total Experience</b>
+            </div>
+            <div fxLayout.xs="column" fxFlex="30%" fxFlexAlign="center" >
+               <b> Last Worked</b>
+            </div>
+        </div>
+        <div fxLayout="row" margin-top-5 fxLayoutGap="20px" *ngFor="let skill of candidateSkills; let i = index">
+            <div fxLayout.xs="column" fxFlex="40%" fxFlexAlign="center" >
+                {{skill.skill_name}}
+            </div>
+            <div fxLayout.xs="column" fxFlex="30%" fxFlexAlign="center" >
+                {{skill.total_exp}} Years
+            </div>
+            <div fxLayout.xs="column" fxFlex="30%" fxFlexAlign="center" >
+                {{skill.last_worked}}
+            </div>
+        </div>
         <div size="20" margin-top-bottom-10><b>Salary Details</b></div>
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout.xs="column" fxFlexAlign="center" >

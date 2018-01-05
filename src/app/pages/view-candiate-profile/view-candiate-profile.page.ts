@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AddResumeDialogPage } from '../add-resume-dialog/add-resume-dialog.page';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-view-candiate-profile',
   templateUrl: './view-candiate-profile.page.html',
   styleUrls: ['./view-candiate-profile.page.css']
 })
+
 export class ViewCandiateProfilePage implements OnInit {
   public skillsSets = []; public p_assessments=[];
-  constructor(public dialog: MatDialog) { }
+  private candidateInfo:any;
+  private candidateSkills:any;
+  constructor(public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data:any
+  ) { }
 
   ngOnInit() {
-      this.skillsSets = ["Javascript", "HTML", "CSS", "Angular", "Node","Material Designs"];
+    this.candidateInfo = this.data.candidateInfo[0];
+    this.candidateSkills = this.data.candidateSkills;
       this.p_assessments = [
         {name:"General Communiction Skills", value:["N/A",1,2,3,4,5]},
         {name:"English Speeking Skills", value:["N/A",1,2,3,4,5]},

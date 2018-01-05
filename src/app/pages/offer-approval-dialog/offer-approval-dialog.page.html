@@ -1,0 +1,169 @@
+<form fxFlex="100%">
+    <h2>Offer Approval</h2>
+    <br/>
+    <hr/>
+     <br/>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <strong color-light-black size-16>Candidate Information</strong>
+      </div>
+      <div fxLayout="column" fxFlexAlign="center">
+        :
+      </div>
+      <div fxLayout="column" fxFlex="70%" fxFlexAlign="center">
+        C0937
+      </div>
+    </div>
+   <br/>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        Candidate Name
+      </div>
+      <div fxLayout="column" fxFlexAlign="center">
+        :
+      </div>
+      <div fxLayout="column" fxFlex="70%" fxFlexAlign="center">
+        Shirish
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        Phone Number
+      </div>
+      <div fxLayout="column" fxFlexAlign="center">
+        :
+      </div>
+      <div fxLayout="column" fxFlex="70%" fxFlexAlign="center">
+        1111111111
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        Email
+      </div>
+      <div fxLayout="column" fxFlexAlign="center">
+        :
+      </div>
+      <div fxLayout="column" fxFlex="70%" fxFlexAlign="center">
+        email@email.com
+      </div>
+    </div>
+
+   <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <strong color-light-black size-16>Experience Information</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <p size-11 color-light-black size-16>Total Experience</p>
+        <p color-black>3 Years</p>
+      </div>
+      
+      <div fxLayout="column" fxFlex="70%" fxFlexAlign="center">
+        <p size-11 color-light-black size-16>Relavant Experience</p>
+        <p color-black>1 Year</p>
+      </div>
+    </div>
+
+    <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <strong color-light-black size-16>Profile Information</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <p size-11 color-light-black size-16></p>
+        <p color-black>Java</p>
+        <p color-black>.Net</p>
+        <p color-black>Php</p>
+      </div>
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <p size-11 color-light-black size-16>Total Experience</p>
+        <p color-black>3 Years</p>
+        <p color-black>3 Years</p>
+        <p color-black>3 Years</p>
+      </div>
+      
+      <div fxLayout="column" fxFlex="70%" fxFlexAlign="center">
+        <p size-11 color-light-black size-16>Last Experience</p>
+        <p color-black>1 Year</p>
+        <p color-black>1 Year</p>
+        <p color-black>1 Year</p>
+      </div>
+    </div>
+     <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <strong color-light-black size-16>Salary Offered</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="16%" fxFlexAlign="center" *ngFor="let value of salary">
+        <p size-11 color-light-black size-16>{{value.label}}</p>
+        <p color-black>{{value.value ? value.value : '----'}}</p>
+      </div>
+      
+    </div>
+     <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="100%" fxFlexAlign="center">
+        <strong color-light-black size-16>  Reasons if salary offered > 30% of last CTE</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+        <p color-black>value</p>
+    </div>
+
+    <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="30%" fxFlexAlign="center">
+        <strong color-light-black size-16>Current Salary</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="16%" fxFlexAlign="center" *ngFor="let value of salary">
+        <p size-11 color-light-black size-16>{{value.label}}</p>
+        <p color-black>{{value.value ? value.value : '----'}}</p>
+      </div>
+      
+    </div>
+     <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="100%" fxFlexAlign="center">
+        <strong color-light-black size-16>Reasons for Job Change</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+        <p color-black>value</p>
+    </div>
+     <br/>
+
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+      <div fxLayout="column" text-muted fxFlex="100%" fxFlexAlign="center">
+        <strong color-light-black size-16>Comment</strong>
+      </div>
+     
+    </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutGap="20px">
+        <p color-black>value</p>
+    </div>
+       <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end">
+      <button mat-raised-button btnstyle mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" btnstyle>Next</button>
+  </div>
+</form>

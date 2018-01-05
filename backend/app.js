@@ -6,12 +6,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var cors = require('cors')
 var index = require('./routes/index');
 var login = require('./routes/ActiveDirectoryLoginRoute');
 var jdViewRoute = require('./routes/ViewPositionsRoute');
 var offersRoute = require('./routes/CandidateOfferRoute');
+let jobCreationRoute = require('./routes/JobCreationRoute');
+let getAllPositions = require('./routes/getAllPositions');
+let newCandidate = require('./routes/AddCandidateProfileInfoRoute');
+let schedule = require('./routes/ScheduleInterviewRoute');
+let feedback = require('./routes/GetInterviewerFeedback');
 var app = express();
-
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -34,6 +40,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/api/user',login);
 app.use('/api/view',jdViewRoute);
 app.use('/api/offer',offersRoute);
+app.use('/api/jobcreation',jobCreationRoute);
+app.use('/api/dashboard',getAllPositions);
+app.use('/api/candidate',newCandidate);
+app.use('/api/schedule',schedule);
+app.use('/api/feedback',feedback);
 
 
 app.use('/', (req, res) => {
